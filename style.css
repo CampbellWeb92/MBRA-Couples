@@ -139,7 +139,7 @@ margin-top: 24px;
   :root{--nav-height:70px}.nav-inner{width:min(100% - 24px,1320px)}.brand img{height:50px;max-width:120px}.menu-button{display:block}.nav-links{position:fixed;top:var(--nav-height);right:-100%;width:min(84vw,340px);height:calc(100dvh - var(--nav-height));padding:28px 20px;background:#120f15;border-left:1px solid var(--gold);flex-direction:column;align-items:stretch;gap:7px;transition:right .3s;overflow-y:auto}.nav-links.open{right:0}.nav-links a{padding:12px;text-align:center}.menu-button.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.menu-button.open span:nth-child(2){opacity:0}.menu-button.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.hero{min-height:auto;padding-top:calc(var(--nav-height) + 48px)}.hero-logo{width:min(48vw,190px)}
 }
 @media(max-width:620px){
-  .services-grid,.pricing-grid{grid-template-columns:1fr}.hero-actions,.gate-actions{flex-direction:column}.hero-actions .button,.gate-actions .button{width:100%}.hours-card{flex-direction:column;text-align:center}.gallery-slide img{height:280px}.gallery-arrow{display:none}.site-footer{position:static}.back-to-top{bottom:18px}.section{padding-inline:16px}
+  .services-grid,.pricing-grid{grid-template-columns:1fr}.hero-actions,.gate-actions{flex-direction:column}.hero-actions .button,.gate-actions .button{width:100%}.hours-card{flex-direction:column;text-align:center}.gallery-slide img{height:280px}.gallery-arrow{width:40px;height:50px;font-size:1.6rem}.gallery-prev{left:6px}.gallery-next{right:6px}.site-footer{position:static}.back-to-top{bottom:18px}.section{padding-inline:16px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
@@ -555,4 +555,104 @@ main,
     .pricing-grid .price-card {
         padding: 46px 20px 26px;
     }
+}
+
+/* =========================================================
+   FINAL RESPONSIVE ENHANCEMENTS + CENTERED GFE HIGHLIGHT
+   ========================================================= */
+
+.price-card,
+.service-card,
+.contact-card,
+.profiles,
+.nav-links a {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.profiles ul {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  list-style: none;
+}
+
+.profiles a {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.profiles a:hover,
+.profiles a:focus-visible {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.gfe-highlight {
+  width: min(100%, 520px);
+  margin: 34px auto 0;
+  padding: 22px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  background: linear-gradient(145deg, rgba(213,215,223,.2), rgba(110,113,122,.1));
+  border: 2px solid var(--silver);
+  border-radius: 10px;
+  box-shadow: 0 14px 32px rgba(0,0,0,.35), 0 0 18px rgba(213,215,223,.28);
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+}
+
+.gfe-highlight span {
+  color: var(--white);
+}
+
+.gfe-highlight strong {
+  color: var(--silver);
+  font-size: 1.9rem;
+}
+
+@media (max-width: 800px) {
+  .site-nav { backdrop-filter: blur(10px); }
+  .nav-links { box-shadow: -18px 20px 48px rgba(0,0,0,.45); }
+  .hero { background-position: 58% center; }
+  h1 { font-size: clamp(2.35rem, 12vw, 4rem); }
+  h2 { font-size: clamp(2rem, 10vw, 3rem); }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 15px; }
+  .nav-inner { width: calc(100% - 20px); }
+  .brand img { height: 46px; max-width: 108px; }
+  .hero { padding-inline: 16px; padding-bottom: 56px; }
+  .hero-kicker, .eyebrow { letter-spacing: 2px; }
+  .section-heading { margin-bottom: 30px; }
+  .service-card > img { height: 200px; }
+  .price-card li { align-items: flex-start; }
+  .price-card li span { text-align: left; }
+  .price-card li strong { flex: 0 0 auto; }
+
+  .gfe-highlight {
+    width: 100%;
+    margin-top: 22px;
+    padding: 20px 16px;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 1.5rem;
+  }
+
+  .gfe-highlight strong {
+    font-size: 1.7rem;
+  }
 }

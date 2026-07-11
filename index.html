@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="style-services-4-column-responsive.css">
   <link rel="stylesheet" href="style-services-and-pricing-responsive.css">
   
-  <script defer src="script.js">
+  <script defer>
     document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
   const overlay = document.getElementById('disclaimerOverlay');
@@ -69,7 +69,11 @@
   const goToSlide = index => {
     if (!track || !slides.length) return;
     activeIndex = (index + slides.length) % slides.length;
-    track.scrollTo({ left: activeIndex * track.clientWidth, behavior: 'smooth' });
+    const targetSlide = slides[activeIndex];
+    track.scrollTo({
+      left: targetSlide.offsetLeft,
+      behavior: 'smooth'
+    });
     updateDots();
   };
 
@@ -86,12 +90,16 @@
   nextButton?.addEventListener('click', () => goToSlide(activeIndex + 1));
   track?.addEventListener('scroll', () => {
     if (!track.clientWidth) return;
-    activeIndex = Math.round(track.scrollLeft / track.clientWidth);
+    activeIndex = slides.reduce((closestIndex, slide, index) => {
+      const currentDistance = Math.abs(track.scrollLeft - slide.offsetLeft);
+      const closestDistance = Math.abs(track.scrollLeft - slides[closestIndex].offsetLeft);
+      return currentDistance < closestDistance ? index : closestIndex;
+    }, 0);
     updateDots();
   }, { passive: true });
 
   window.addEventListener('resize', () => {
-    if (track) track.scrollLeft = activeIndex * track.clientWidth;
+    if (track && slides[activeIndex]) track.scrollLeft = slides[activeIndex].offsetLeft;
   });
 
   window.addEventListener('scroll', () => {
@@ -203,10 +211,13 @@
 
         <article class="price-card"><h3>FH | Single Person</h3><ul><li><span>60 Minutes</span><strong>R3500</strong></li><li><span>90 Minutes</span><strong>R4000</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
         <article class="price-card"><h3>FH | Couple</h3><ul><li><span>60 Minutes</span><strong>R5000</strong></li><li><span>90 Minutes</span><strong>R5500</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
-
-        <article class="price-card"><h3>GFE add-on</h3><ul><li><span>Extra</span><strong>R500</strong></li></ul></article>
       </div>
-    </section>
+       </section>
+        <div class="gfe-highlight">
+  <span>GFE add-on</span>
+  <strong>R500</strong>
+</div><br><br>
+   
 
     <section id="hours" class="section section-alt section-centered">
       <div class="section-heading"><span class="eyebrow">By Appointment</span><h2>Business Hours</h2></div>
