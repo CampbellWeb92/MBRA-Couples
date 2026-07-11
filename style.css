@@ -158,8 +158,7 @@ margin-top: 24px;
 /* Keep the website above the stars */
 .main-navbar,
 main,
-.site-footer,
-.back-to-top {
+.site-footer {
     position: relative;
     z-index: 2;
 }
@@ -654,5 +653,33 @@ main,
 
   .gfe-highlight strong {
     font-size: 1.7rem;
+  }
+}
+
+/* Keep the Back to Top button fixed on the right */
+.back-to-top {
+  position: fixed !important;
+  right: 18px !important;
+  left: auto !important;
+}
+
+@media (max-width: 620px) {
+  .back-to-top {
+    right: 14px !important;
+    left: auto !important;
+  }
+}
+
+/* Final viewport positioning override */
+#backToTop.back-to-top {
+  position: fixed !important;
+  inset: auto 18px 92px auto !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+}
+
+@media (max-width: 620px) {
+  #backToTop.back-to-top {
+    inset: auto 14px 18px auto !important;
   }
 }
