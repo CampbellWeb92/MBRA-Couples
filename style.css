@@ -1,0 +1,558 @@
+:root {
+  --purple:#6f2da8; --purple-dark:#21102c; --purple-light:#c3a0dc;
+  --gold:#c9a54e; --silver:#d5d7df; --black:#0c0a0e; --panel:#17131b;
+  --white:#fff; --muted:rgba(255,255,255,.72); --border:rgba(213,215,223,.16);
+  --nav-height:78px; --font-display:'Cormorant Garamond',serif; --font-body:'Montserrat',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-height) + 18px)}
+body{font-family:var(--font-body);background:var(--black);color:var(--white);line-height:1.7;overflow-x:hidden}
+body.menu-open{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+/* Gold glow hover effect for navbar logo */
+.brand img,
+.nav-logo img {
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+.brand:hover img,
+.brand:focus-visible img,
+.nav-logo:hover img,
+.nav-logo:focus-visible img {
+    transform: scale(1.06);
+    filter:
+        drop-shadow(0 0 6px rgba(201, 165, 78, 0.75))
+        drop-shadow(0 0 14px rgba(201, 165, 78, 0.55))
+        brightness(1.08);
+}
+.site-nav{position:fixed;inset:0 0 auto;z-index:1000;height:var(--nav-height);background:rgba(12,10,14,.94);border-bottom:1px solid rgba(201,165,78,.28);backdrop-filter:blur(14px)}
+.nav-inner{width:min(100% - 32px,1320px);height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;flex:0 0 auto}
+.brand img{width:auto;height:58px;max-width:150px;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:clamp(14px,2.2vw,28px)}
+.nav-links a{text-decoration:none;text-transform:uppercase;letter-spacing:1.2px;font-size:.75rem;font-weight:600;color:var(--silver);transition:.25s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--gold)}
+.nav-book{padding:9px 15px;border:1px solid var(--gold);border-radius:5px}
+.menu-button{display:none;width:44px;height:44px;padding:9px;border:1px solid rgba(201,165,78,.55);border-radius:6px;background:transparent;cursor:pointer}
+.menu-button span{display:block;height:2px;margin:5px 0;background:var(--gold);transition:.25s}
+
+.hero{min-height:100svh;padding:calc(var(--nav-height) + 56px) 20px 72px;display:grid;place-items:center;text-align:center;background:linear-gradient(rgba(7,4,10,.60),rgba(7,4,10,.86)),url('images/hero.png') center/cover no-repeat}
+.hero-content{width:min(100%,850px)}
+.hero-logo{width:clamp(130px,18vw,220px);max-height:210px;object-fit:contain;margin:0 auto 16px;filter:drop-shadow(0 10px 28px rgba(0,0,0,.55))}
+.eyebrow{display:block;color:var(--gold);font-size:.74rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.hero-kicker{text-transform:uppercase;letter-spacing:3px;font-size:.78rem;color:var(--silver);margin-bottom:8px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.12}
+h1,h2{background:linear-gradient(110deg,var(--silver),#fff,var(--gold),var(--purple-light),var(--silver));background-size:240% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:glimmer 8s linear infinite}
+h1{font-size:clamp(2.7rem,7vw,5.4rem);font-weight:500}
+h2{font-size:clamp(2.35rem,5vw,3.8rem);font-weight:500}
+@keyframes glimmer{to{background-position:-240% center}}
+.hero-copy{max-width:680px;margin:18px auto 0;color:var(--muted);font-size:clamp(.96rem,2vw,1.08rem)}
+.hero-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;border:1px solid transparent;border-radius:5px;text-decoration:none;text-transform:uppercase;letter-spacing:1.2px;font-size:.74rem;font-weight:600;cursor:pointer;transition:.25s}
+.button-primary{background:var(--gold);color:var(--black)}
+.button-primary:hover{background:transparent;color:var(--gold);border-color:var(--gold)}
+.button-secondary{background:transparent;color:var(--white);border-color:rgba(255,255,255,.38)}
+.button-secondary:hover{background:var(--white);color:var(--black)}
+
+.section{width:min(100%,1320px);margin:auto;padding:clamp(68px,8vw,108px) clamp(18px,4vw,32px)}
+.section-alt{width:100%;max-width:none;background:#120f15}
+.section-alt>*{width:min(100%,1256px);margin-inline:auto}
+.section-centered{text-align:center}
+.section-heading{text-align:center;margin-bottom:clamp(34px,5vw,54px)}
+.lead{max-width:850px;margin:auto;color:var(--muted);font-size:clamp(.96rem,2vw,1.08rem)}
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    width: min(100%, 900px);
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+.contact-card {
+    width: 100% !important;
+    margin: 0;
+}
+.profiles {
+    grid-column: 1 / -1;
+    text-align:center;
+margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+.services-grid,.pricing-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.service-card,.price-card,.hours-card,.contact-card{background:linear-gradient(145deg,#1d1722,#120f15);border:1px solid var(--border);box-shadow:0 16px 38px rgba(0,0,0,.24)}
+.service-card{overflow:hidden;border-radius:10px;transition:.3s}
+.service-card:hover{transform:translateY(-5px);border-color:var(--purple-light)}
+.service-card>img{width:100%;height:220px;object-fit:cover;border-bottom:2px solid var(--gold)}
+.card-body{padding:24px}
+.card-body h3,.price-card h3,.contact-card h3{font-size:1.65rem;color:var(--gold);margin-bottom:10px}
+.card-body p,.contact-card p{font-size:.9rem;color:var(--muted)}
+.price-card{position:relative;display:flex;flex-direction:column;padding:48px 22px 28px;text-align:center;transition:.3s}
+.price-card:hover{transform:translateY(-5px);border-color:var(--purple-light)}
+.price-card.featured{border:2px solid var(--gold)}
+.popular{position:absolute;top:15px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.price-card ul{list-style:none;flex:1;margin:16px 0 26px}
+.price-card li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:.9rem;color:var(--muted)}
+.price-card strong{color:var(--gold)}
+.price-card .button{width:100%}
+.hours-card{max-width:700px;margin:auto;padding:28px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.hours-card span{text-transform:uppercase;letter-spacing:1.4px;font-weight:600}
+.hours-card strong{font-family:var(--font-display);font-size:1.55rem;color:var(--gold)}
+.gallery-shell{position:relative;width:min(100%,940px);margin:auto;overflow:hidden;border:2px solid var(--gold);border-radius:9px;box-shadow:0 20px 48px rgba(0,0,0,.38)}
+.gallery-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.gallery-track::-webkit-scrollbar{display:none}
+.gallery-slide{flex:0 0 100%;scroll-snap-align:start}
+.gallery-slide img{width:100%;height:clamp(290px,52vw,520px);object-fit:cover}
+.gallery-arrow{position:absolute;top:50%;z-index:2;transform:translateY(-50%);width:46px;height:58px;border:1px solid rgba(255,255,255,.25);background:rgba(10,8,12,.72);color:var(--gold);font-size:2rem;cursor:pointer}
+.gallery-prev{left:12px}.gallery-next{right:12px}
+.gallery-dots{display:flex;justify-content:center;gap:10px;margin-top:20px}
+.dot{width:11px;height:11px;border:0;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer}
+.dot.active{background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.contact-card{display:block;width:min(100%,430px)!important;padding:42px 26px;margin:auto;text-align:center;text-decoration:none;transition:.3s}
+.contact-card:hover{transform:translateY(-5px);border-color:var(--gold)}
+.contact-icon{display:grid;place-items:center;width:66px;height:66px;margin:0 auto 18px;border:1px solid rgba(201,165,78,.45);border-radius:50%;color:var(--gold);font-size:1.4rem}
+.contact-link{display:inline-block;margin-top:14px;color:var(--gold);font-size:.74rem;text-transform:uppercase;letter-spacing:1.5px}
+.site-footer{position:sticky;bottom:0;z-index:900;padding:16px 20px;background:rgba(9,7,11,.97);border-top:1px solid rgba(201,165,78,.28);text-align:center;font-size:.7rem;letter-spacing:1px;text-transform:uppercase}
+.site-footer p+p{margin-top:4px;color:rgba(255,255,255,.58)}
+.site-footer a{color:var(--gold);text-decoration:none}
+.back-to-top{position:fixed;right:18px;bottom:92px;z-index:850;width:44px;height:44px;display:grid;place-items:center;border:2px solid var(--gold);border-radius:5px;background:var(--black);color:var(--gold);text-decoration:none;opacity:0;pointer-events:none;transform:translateY(8px);transition:.25s}
+.back-to-top.visible{opacity:1;pointer-events:auto;transform:none}
+.age-gate-backdrop{position:fixed;inset:0;z-index:5000;display:grid;place-items:center;padding:22px;background:rgba(6,5,8,.98);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:.3s}
+.age-gate-backdrop.visible{opacity:1;visibility:visible}
+.age-gate-container{width:min(100%,500px);padding:clamp(30px,6vw,52px);background:#151119;border:1px solid var(--gold);border-radius:12px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.age-gate-container h2{font-size:2.35rem;margin-bottom:12px}
+.age-gate-container p{color:var(--muted);font-size:.88rem;margin-bottom:24px}
+.gate-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+@media(max-width:1050px){.services-grid,.pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){
+  :root{--nav-height:70px}.nav-inner{width:min(100% - 24px,1320px)}.brand img{height:50px;max-width:120px}.menu-button{display:block}.nav-links{position:fixed;top:var(--nav-height);right:-100%;width:min(84vw,340px);height:calc(100dvh - var(--nav-height));padding:28px 20px;background:#120f15;border-left:1px solid var(--gold);flex-direction:column;align-items:stretch;gap:7px;transition:right .3s;overflow-y:auto}.nav-links.open{right:0}.nav-links a{padding:12px;text-align:center}.menu-button.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.menu-button.open span:nth-child(2){opacity:0}.menu-button.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.hero{min-height:auto;padding-top:calc(var(--nav-height) + 48px)}.hero-logo{width:min(48vw,190px)}
+}
+@media(max-width:620px){
+  .services-grid,.pricing-grid{grid-template-columns:1fr}.hero-actions,.gate-actions{flex-direction:column}.hero-actions .button,.gate-actions .button{width:100%}.hours-card{flex-direction:column;text-align:center}.gallery-slide img{height:280px}.gallery-arrow{display:none}.site-footer{position:static}.back-to-top{bottom:18px}.section{padding-inline:16px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* =========================================
+   SILVER SPARKLING STARS BACKGROUND
+   ========================================= */
+
+.silver-stars {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Keep the website above the stars */
+.main-navbar,
+main,
+.site-footer,
+.back-to-top {
+    position: relative;
+    z-index: 2;
+}
+
+.silver-stars::before,
+.silver-stars::after {
+    content: "";
+    position: absolute;
+    inset: -25%;
+    background-repeat: repeat;
+    pointer-events: none;
+}
+
+/* Small twinkling stars */
+.silver-stars::before {
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.95) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(210,214,224,.85) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle, rgba(180,185,198,.7) 0 1px, transparent 2px);
+
+    background-size:
+        120px 120px,
+        180px 180px,
+        260px 260px;
+
+    background-position:
+        10px 15px,
+        60px 45px,
+        120px 90px;
+
+    animation:
+        starsDrift 22s linear infinite,
+        starsTwinkle 2.8s ease-in-out infinite alternate;
+}
+
+/* =========================================================
+   GOLD CARD BORDERS + SILVER SHIMMER
+   Applies to all service and pricing cards
+   ========================================================= */
+
+.service-card,
+.price-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 2px solid var(--silver);
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.34),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+/* Keep all card content above the shimmer layer */
+.service-card > *,
+.price-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Moving silver shimmer */
+.service-card::before,
+.price-card::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -35%;
+    left: -85%;
+    width: 52%;
+    height: 170%;
+    pointer-events: none;
+    opacity: 0;
+    transform: rotate(18deg);
+
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.06) 22%,
+        rgba(213, 215, 223, 0.32) 40%,
+        rgba(255, 255, 255, 0.92) 50%,
+        rgba(213, 215, 223, 0.32) 60%,
+        rgba(255, 255, 255, 0.06) 78%,
+        transparent 100%
+    );
+
+    filter: blur(1px);
+    animation: cardSilverShimmer 6s ease-in-out infinite;
+}
+
+/* Soft silver glow inside the card */
+.service-card::after,
+.price-card::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+
+    background:
+        radial-gradient(
+            circle at 18% 14%,
+            rgba(255, 255, 255, 0.11),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 82% 88%,
+            rgba(213, 215, 223, 0.08),
+            transparent 34%
+        );
+}
+
+/* Gold hover glow */
+.service-card:hover,
+.price-card:hover {
+    border-color: #f2d37b;
+    transform: translateY(-6px);
+    box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.42),
+        0 0 18px rgba(201, 165, 78, 0.50),
+        0 0 34px rgba(201, 165, 78, 0.24);
+}
+
+/* Faster shimmer when hovered */
+.service-card:hover::before,
+.price-card:hover::before {
+    animation-duration: 1.15s;
+    opacity: 1;
+}
+
+@keyframes cardSilverShimmer {
+    0% {
+        left: -85%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.72;
+    }
+
+    34% {
+        left: 138%;
+        opacity: 0.9;
+    }
+
+    35%,
+    100% {
+        left: 138%;
+        opacity: 0;
+    }
+}
+
+/* Maintain the featured pricing card */
+.price-card.featured {
+    border: 2px solid var(--gold);
+    box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.34),
+        0 0 18px rgba(201, 165, 78, 0.26);
+}
+
+/* Ensure service images remain neatly clipped */
+.service-card > img,
+.service-card .service-image-wrapper,
+.service-card .service-image-wrapper img {
+    border-radius: 0;
+}
+
+/* Mobile: subtler shimmer for smoother performance */
+@media (max-width: 768px) {
+    .service-card::before,
+    .price-card::before {
+        width: 68%;
+        animation-duration: 7.5s;
+    }
+
+    .service-card:hover,
+    .price-card:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .service-card::before,
+    .price-card::before {
+        animation: none;
+        opacity: 0;
+    }
+}
+
+/* Larger glowing stars */
+.silver-stars::after {
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.95) 0 1px,
+            rgba(215,218,228,.45) 2px,
+            transparent 5px
+        ),
+        radial-gradient(
+            circle,
+            rgba(230,232,240,.8) 0 1px,
+            transparent 4px
+        );
+
+    background-size:
+        270px 270px,
+        360px 360px;
+
+    background-position:
+        35px 80px,
+        170px 25px;
+
+    filter: drop-shadow(0 0 5px rgba(230,232,240,.9));
+
+    animation:
+        starsDriftReverse 30s linear infinite,
+        starsGlow 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes starsDrift {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(140px, -180px, 0);
+    }
+}
+
+@keyframes starsDriftReverse {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(-130px, -210px, 0);
+    }
+}
+
+@keyframes starsTwinkle {
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+@keyframes starsGlow {
+    from {
+        opacity: 0.18;
+        filter: drop-shadow(0 0 3px rgba(220,224,235,.45));
+    }
+
+    to {
+        opacity: 0.9;
+        filter: drop-shadow(0 0 9px rgba(255,255,255,.95));
+    }
+}
+
+/* Lighter effect on mobile */
+@media (max-width: 768px) {
+    .silver-stars::before {
+        opacity: 0.45;
+
+        background-size:
+            120px 120px,
+            180px 180px,
+            250px 250px;
+    }
+
+    .silver-stars::after {
+        opacity: 0.3;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .silver-stars::before,
+    .silver-stars::after {
+        animation: none;
+    }
+}
+
+/* =========================================================
+   SERVICES GRID — 4 CARDS IN ONE ROW ON DESKTOP
+   2 COLUMNS ON TABLETS, 1 COLUMN ON MOBILE
+   ========================================================= */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+/* Keep every service card the same height */
+.services-grid .service-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+}
+
+/* Keep service images consistent */
+.services-grid .service-card > img,
+.services-grid .service-card .service-image-wrapper {
+    width: 100%;
+    height: 220px;
+    flex: 0 0 220px;
+    overflow: hidden;
+}
+
+.services-grid .service-card > img,
+.services-grid .service-card .service-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Make the text area fill the remaining card height */
+.services-grid .service-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Tablet: two cards per row */
+@media (max-width: 1050px) {
+    .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile: one card per row */
+@media (max-width: 620px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .services-grid .service-card > img,
+    .services-grid .service-card .service-image-wrapper {
+        height: 210px;
+        flex-basis: 210px;
+    }
+}
+
+/* =========================================================
+   PRICING GRID — 4 CARDS IN ONE ROW ON DESKTOP
+   2 COLUMNS ON TABLETS, 1 COLUMN ON MOBILE
+   ========================================================= */
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+/* Keep all price cards equal height */
+.pricing-grid .price-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+}
+
+/* Allow the price list to fill available space */
+.pricing-grid .price-card ul {
+    flex: 1;
+}
+
+/* Keep booking buttons aligned along the bottom */
+.pricing-grid .price-card .button {
+    margin-top: auto;
+}
+
+/* Tablet: two price cards per row */
+@media (max-width: 1050px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile: one price card per row */
+@media (max-width: 620px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .pricing-grid .price-card {
+        padding: 46px 20px 26px;
+    }
+}

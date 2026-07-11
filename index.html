@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Massage by Ryan & Ash — professional massage and couples sessions.">
+  <title>Massage by Ryan & Ash | Couples Sessions</title>
+  <link rel="stylesheet" href="style-with-card-shimmer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-services-4-column-responsive.css">
+  <link rel="stylesheet" href="style-services-and-pricing-responsive.css">
+  
+  <script defer src="script.js">
+    document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const overlay = document.getElementById('disclaimerOverlay');
+  const enterButton = document.getElementById('btnAgeVerifyPass');
+  const exitButton = document.getElementById('btnAgeVerifyFail');
+  const menuButton = document.getElementById('menuButton');
+  const navLinks = document.getElementById('navLinks');
+  const backToTop = document.getElementById('backToTop');
+
+  const closeMenu = () => {
+    navLinks?.classList.remove('open');
+    menuButton?.classList.remove('open');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    body.classList.remove('menu-open');
+  };
+
+  overlay?.classList.add('visible');
+  body.style.overflow = overlay ? 'hidden' : '';
+
+  enterButton?.addEventListener('click', () => {
+    overlay?.classList.remove('visible');
+    body.style.overflow = '';
+    sessionStorage.setItem('ageVerified', 'true');
+  });
+
+  if (sessionStorage.getItem('ageVerified') === 'true') {
+    overlay?.classList.remove('visible');
+    body.style.overflow = '';
+  }
+
+  exitButton?.addEventListener('click', () => {
+    window.location.href = 'https://www.google.com';
+  });
+
+  menuButton?.addEventListener('click', () => {
+    const isOpen = navLinks?.classList.toggle('open') ?? false;
+    menuButton.classList.toggle('open', isOpen);
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+    body.classList.toggle('menu-open', isOpen);
+  });
+
+  navLinks?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  window.addEventListener('resize', () => { if (window.innerWidth > 800) closeMenu(); });
+
+  const track = document.getElementById('galleryTrack');
+  const slides = track ? [...track.querySelectorAll('.gallery-slide')] : [];
+  const dotsContainer = document.getElementById('galleryDots');
+  const prevButton = document.querySelector('.gallery-prev');
+  const nextButton = document.querySelector('.gallery-next');
+  let activeIndex = 0;
+
+  const updateDots = () => dotsContainer?.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+  const goToSlide = index => {
+    if (!track || !slides.length) return;
+    activeIndex = (index + slides.length) % slides.length;
+    track.scrollTo({ left: activeIndex * track.clientWidth, behavior: 'smooth' });
+    updateDots();
+  };
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = index === 0 ? 'dot active' : 'dot';
+    dot.setAttribute('aria-label', `Show gallery image ${index + 1}`);
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer?.appendChild(dot);
+  });
+
+  prevButton?.addEventListener('click', () => goToSlide(activeIndex - 1));
+  nextButton?.addEventListener('click', () => goToSlide(activeIndex + 1));
+  track?.addEventListener('scroll', () => {
+    if (!track.clientWidth) return;
+    activeIndex = Math.round(track.scrollLeft / track.clientWidth);
+    updateDots();
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (track) track.scrollLeft = activeIndex * track.clientWidth;
+  });
+
+  window.addEventListener('scroll', () => {
+    backToTop?.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+});
+</script>
+
+</head>
+<body>
+
+      <div class="silver-stars" aria-hidden="true"></div>
+
+  <div id="disclaimerOverlay" class="age-gate-backdrop" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+    <div class="age-gate-container">
+      <span class="eyebrow">Verification Required</span>
+      <h2 id="ageGateTitle">Are you 18 or older?</h2>
+      <p>This wellness website contains services intended for adults. Please confirm your eligibility to continue.</p>
+      <div class="gate-actions">
+        <button id="btnAgeVerifyPass" class="button button-primary" type="button">Yes, Enter Site</button>
+        <button id="btnAgeVerifyFail" class="button button-secondary" type="button">No, Exit</button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#top" class="brand" aria-label="Massage by Ryan and Ash home">
+        <img src="images/logo.png" alt="Massage by Ryan and Ash logo">
+      </a>
+      <button id="menuButton" class="menu-button" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div id="navLinks" class="nav-links">
+        <a href="#philosophy">Philosophy</a>
+        <a href="#services">Services</a>
+        <a href="#rates">Rates</a>
+        <a href="#hours">Hours</a>
+        <a href="#gallery">Gallery</a>
+         <a href="#profiles">Profiles</a>
+        <a href="#contact" class="nav-book">Book Now</a>
+        
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">Couples Retreat</span>
+        <p class="hero-kicker">Welcome to your ultimate escape together</p>
+        <h1>Massage by Ryan &amp; Ash</h1>
+        <p class="hero-copy">Luxury massage experiences designed to help you relax, destress, and strengthen bonds.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="button button-primary">Book Now</a>
+          <a href="#services" class="button button-secondary">Explore Services</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="philosophy" class="section section-centered">
+      <div class="section-heading">
+        <span class="eyebrow">Our Approach</span>
+        <h2>Our Philosophy</h2>
+      </div>
+      <p class="lead">At Massage by Ryan &amp; Ash, we offer deeply relaxing couples massages. Guaranteed to melt away daily stress, boost happy hormones, and strengthen your bond with your partner. Side-by-side tables in the same room allows you to unwind together.</p>
+    </section>
+
+    <section id="services" class="section section-alt">
+      <div class="section-heading">
+        <span class="eyebrow">Treatments</span>
+        <h2>Our Services</h2>
+      </div>
+      <div class="card-grid services-grid">
+        <article class="service-card">
+          <img src="images/massage.png" alt="Swedish massage treatment" loading="lazy">
+          <div class="card-body"><h3> Couples Swedish Massage</h3><p>A gentle oil massage that eases muscle tension, encourages circulation, lowers stress, and improves flexibility.</p></div>
+        </article>
+        <article class="service-card">
+          <img src="images/female.png" alt="Sensual massage treatment" loading="lazy">
+          <div class="card-body"><h3>Couples Sensual Massage</h3><p>Slow, flowing techniques and mindful touch promote deep relaxation, body awareness, and emotional wellbeing.</p></div>
+        </article>
+        <article class="service-card">
+          <img src="images/sensual.png" alt="Couples sensual massage" loading="lazy">
+          <div class="card-body"><h3>Couples Sensual Massage with FH</h3><p>A shared sensual massage experience for two guests, each with their own table and therapist with a sexual twist.</p></div>
+        </article>
+        <article class="service-card">
+          <img src="images/decor.png" alt="Couples FH" loading="lazy">
+          <div class="card-body"><h3>Couples FH</h3><p>A shared sexual experience.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="rates" class="section">
+      <div class="section-heading">
+        <span class="eyebrow">Pricing</span>
+        <h2>Massage Rates</h2>
+        <p>(All services are performed with Ryan & Ash)</p>
+      </div>
+      <div class="card-grid pricing-grid">
+         <article class="price-card"><h3>Swedish Massage | Single Person</h3><ul><li><span>60 Minutes</span><strong>R2500</strong></li><li><span>90 Minutes</span><strong>R3500</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
+        <article class="price-card"><h3>Swedish Massage | Couple</h3><ul><li><span>60 Minutes</span><strong>R4000</strong></li><li><span>90 Minutes</span><strong>R5000</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
+
+        <article class="price-card"><h3>Sensual Massage | Single Person</h3><ul><li><span>60 Minutes</span><strong>R2800</strong></li><li><span>90 Minutes</span><strong>R3800</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
+        <article class="price-card"><h3>Sensual Massage | Couple</h3><ul><li><span>60 Minutes</span><strong>R4300</strong></li><li><span>90 Minutes</span><strong>R4800</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
+    
+        <article class="price-card"><h3>Sensual Massage & FH | Single Person</h3><ul><li><span>60 Minutes</span><strong>R3000</strong></li><li><span>90 Minutes</span><strong>R3500</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
+        <article class="price-card"><h3>Sensual Massage & FH | Couple</h3><ul><li><span>60 Minutes</span><strong>R4500</strong></li><li><span>90 Minutes</span><strong>R5000</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
+
+        <article class="price-card"><h3>FH | Single Person</h3><ul><li><span>60 Minutes</span><strong>R3500</strong></li><li><span>90 Minutes</span><strong>R4000</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
+        <article class="price-card"><h3>FH | Couple</h3><ul><li><span>60 Minutes</span><strong>R5000</strong></li><li><span>90 Minutes</span><strong>R5500</strong></li></ul><a href="#contact" class="button button-primary">Book Now</a></article>
+
+        <article class="price-card"><h3>GFE add-on</h3><ul><li><span>Extra</span><strong>R500</strong></li></ul></article>
+      </div>
+    </section>
+
+    <section id="hours" class="section section-alt section-centered">
+      <div class="section-heading"><span class="eyebrow">By Appointment</span><h2>Business Hours</h2></div>
+      <div class="hours-card"><span>Tuesday – Saturday</span><strong>09:00 AM – 06:00 PM</strong></div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="section-heading"><span class="eyebrow">A Glimpse Inside</span><h2>Gallery</h2></div>
+      <div class="gallery-shell">
+        <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image">‹</button>
+        <div id="galleryTrack" class="gallery-track">
+          <figure class="gallery-slide"><img src="images/1.jpg" alt="Massage gallery image 1" loading="lazy"></figure>
+          <figure class="gallery-slide"><img src="images/2.jpg" alt="Massage gallery image 2" loading="lazy"></figure>
+          <figure class="gallery-slide"><img src="images/3.jpg" alt="Massage gallery image 3" loading="lazy"></figure>
+          <figure class="gallery-slide"><img src="images/4.jpg" alt="Massage gallery image 4" loading="lazy"></figure>
+          <figure class="gallery-slide"><img src="images/Ryan.jpg" alt="Massage gallery image 5" loading="lazy"></figure>
+          <figure class="gallery-slide"><img src="images/Ash.jpg" alt="Massage gallery image 6" loading="lazy"></figure>
+        </div>
+        <button class="gallery-arrow gallery-next" type="button" aria-label="Next image">›</button>
+      </div>
+      <div id="galleryDots" class="gallery-dots" aria-label="Gallery navigation"></div>
+    </section>
+<div class="contact-grid">
+
+    <a href="https://wa.me/27RYANNUMBER"
+       class="contact-card"
+       target="_blank"
+       rel="noopener noreferrer">
+
+        <div class="contact-icon">💬</div>
+        <h3>WhatsApp Ryan</h3>
+        <p>Tap to send Ryan a message</p>
+        <span class="contact-link">Chat with Ryan</span>
+    </a>
+
+    <a href="https://wa.me/27795567346"
+       class="contact-card"
+       target="_blank"
+       rel="noopener noreferrer">
+
+        <div class="contact-icon">💬</div>
+        <h3>WhatsApp Ash</h3>
+        <p>Tap to send Ash a message</p>
+        <span class="contact-link">Chat with Ash</span>
+    </a><br>
+
+    <div id="profiles" class="profiles">
+        <h2>View our independent profiles here:</h2>
+        <ul>
+            <li> <a href="https://massagebyryan.co.za" target="_blank" rel="noopener noreferrer">Ryan's Profile</a></li>
+            <li> <a href="https://massagebyash.co.za" target="_blank" rel="noopener noreferrer">Ash's Profile</a></li>
+        </ul>
+    </div><br>
+
+</div>
+  </main>
+
+  <a href="#top" id="backToTop" class="back-to-top" aria-label="Scroll to top">↑</a>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Massage by Ryan &amp; Ash | All Rights Reserved.</p>
+    <p>Proudly made by <a href="https://campbellweb.co.za" target="_blank" rel="noopener noreferrer">CampbellWeb</a></p>
+  </footer>
+</body>
+</html>
